@@ -1,5 +1,5 @@
 import os
-
+#Lettura files e path da sistema operativo
 def getFilesList(startingDirectory):
     finalList=list()
     listOfFiles=os.listdir(startingDirectory)
