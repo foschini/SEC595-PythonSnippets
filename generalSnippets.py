@@ -42,6 +42,43 @@ print(f"myNumpyIntArrayTimesTwo {myNumpyIntArray*2}")
 
 #np.shape è una proprietà degli np array che restituisce le dimensioni di un array (arr.shape). 
 # np.reshape((n,m)) riarrangia gli elementi di un array arr, secondo le dimensioni indicate nella tupla (n, m).
+#np.dim è una proprietà degli np array che restituisce il numero delle dimensioni di un array
 
-print(myNumpyIntArray.shape)
+print(f"myNumpyIntArray {myNumpyIntArray}")
+print(f"La shape è: {myNumpyIntArray.shape}, e ndim è: {myNumpyIntArray.ndim}")
 print(myNumpyIntArray.reshape(2,2))
+print(f"La shape è: {myNumpyIntArray.shape}, e ndim è: {myNumpyIntArray.ndim}")
+
+#per caricare dati da un file di testo uso np.genfromtxt(file.txt)
+data_file = """nomi,cose,città
+mario,casa,roma
+luca,armadio,milano
+marco,sedia,palermo
+giovanni,racchetta,firenze
+giuseppe,libro,orvieto"""
+
+# Per testare senza un file fisico, uso StringIO
+from io import StringIO
+file_object = StringIO(data_file)
+
+data=np.genfromtxt(file_object,delimiter=",",dtype=str) #np.genfromtxt assegna come default float e se non riesce a convertire allora inserisce stringa nan (Not A Number) se devo
+#acquisire stringhe è meglio esplicitare dtype=str
+print(data)
+print(data.shape, data.ndim)
+
+dataShuffled=data
+np.random.shuffle(dataShuffled)#attenzione a np.random.shuffle(): non restituisce nulla, ma applica lo shuffle direttamente sull'array che gli si passa in argomento.
+
+print(dataShuffled)
+
+#DIZIONARI {}
+
+myDict={"Nome":"Andrea","Età":50,"Capelli":"pochi"}
+
+print(myDict)           #stampa il dizionario
+print(myDict.keys())    #stampa una lista contenente le chiavi
+print(myDict.values())  #stampa una lista contenente i valori
+print(myDict.items())   #stampa una lista contenente le tuple (chiave,valore)
+
+for key,value in myDict.items():    #ricordati che se iteri su un container di array, con il costrutto della virgola puoi ottenere puntatori a ciascun elemento dell'array.
+    print(f"Chiave: {key}, Valore: {value}")
