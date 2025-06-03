@@ -1,29 +1,33 @@
-import matplotlib.pyplot as plt
-import numpy as np # Often useful for numerical operations
+import matplotlib.pyplot as plt # Importa la libreria matplotlib per la creazione di grafici
+import numpy as np # Importa la libreria numpy, spesso utile per operazioni numeriche
 
-def myDrawSubPlot(ax, data, titolo, labelOrdinate): # Changed plt to ax
-    ax.plot(data)
-    ax.set_title(titolo) # Use set_title for Axes objects
-    ax.set_xlabel("Valori") # Use set_xlabel for Axes objects
-    ax.set_ylabel(labelOrdinate) # Use set_ylabel for Axes objects
+def myDrawSubPlot(ax, data, titolo, labelOrdinate): # Definisce una funzione per disegnare un singolo subplot
+     # ax: l'oggetto Axes su cui disegnare
+    # data: i dati da plottare
+    # titolo: il titolo del subplot
+    # labelOrdinate: l'etichetta dell'asse y
 
-    # Ensure tick locations are a proper list/array
-    ax.set_xticks(list(range(len(data)))) # Set ticks based on the length of the data
+    ax.plot(data) # Disegna i dati sull'oggetto Axes specificato
+    ax.set_title(titolo) # Imposta il titolo per il subplot
+    ax.set_xlabel("Valori") # Imposta l'etichetta per l'asse x del subplot
+    ax.set_ylabel(labelOrdinate) # Imposta l'etichetta per l'asse y del subplot
 
-    ax.autoscale(True, "both")
-    ax.grid(True) # It's good practice to explicitly pass True
+    # Assicura che le posizioni dei tick siano una lista/array corretto
+    ax.set_xticks(list(range(len(data)))) # Imposta i tick dell'asse x in base alla lunghezza dei dati
 
-figure, subplots = plt.subplots(2, figsize=(12, 6), dpi=100)
+    ax.autoscale(True, "both") # Adatta automaticamente gli assi per visualizzare tutti i dati
+    ax.grid(True) # Aggiunge una griglia al subplot
 
-squares = [i**2 for i in range(5)]
-# Corrected cubes to be a flat list
-cubes = [i**3 for i in range(5)]
+figure, subplots = plt.subplots(2, figsize=(12, 6), dpi=100) # Crea una figura e un set di subplot (2 righe, 1 colonna)
 
-# Pass the individual subplot axes objects
-myDrawSubPlot(subplots[0], squares, "Quadrati del cazzo", "Quadrati")
-myDrawSubPlot(subplots[1], cubes, "Cubi del cazzo", "Cubi")
+squares = [i**2 for i in range(5)] # Calcola i quadrati dei numeri da 0 a 4
+cubes = [i**3 for i in range(5)] # Calcola i cubi dei numeri da 0 a 4
 
-# Adjust layout to prevent titles/labels from overlapping
+# Passa gli oggetti Axes dei singoli subplot alla funzione
+myDrawSubPlot(subplots[0], squares, "Quadrati dei numeri da 0 a 4", "Quadrati") # Disegna il primo subplot con i quadrati
+myDrawSubPlot(subplots[1], cubes, "Cubi dei numeri da 0 a 4", "Cubi") # Disegna il secondo subplot con i cubi
+
+# Regola il layout per evitare che titoli/etichette si sovrappongano
 figure.tight_layout()
 
-plt.show()
+plt.show() # Mostra la figura con tutti i subplot
