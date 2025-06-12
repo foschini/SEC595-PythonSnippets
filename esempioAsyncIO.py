@@ -1,7 +1,3 @@
-Certamente, ecco il codice riscritto utilizzando la sintassi async/await, che è il modo più moderno e preferito per definire e lavorare con le coroutine in asyncio:
-
-Python
-
 import asyncio
 import random
 

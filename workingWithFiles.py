@@ -11,7 +11,7 @@ def getFilesList(startingDirectory):
         file_name=os.path.join(startingDirectory,file)
         finalList.append(file_name)
     return finalList
-initialPath="z:/epub"
+initialPath="C:\\Users\\afosc\\Andrea"
 
 def listFilesInPath(initialPath):
     testPaths=os.listdir(initialPath)
