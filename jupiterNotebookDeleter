@@ -1,0 +1,55 @@
+
+import os
+import json
+def list_files_in_path(path):
+    ###Takes a path as input and return the list of notebooks (as full path strings) in that path
+    if not os.path.exists(path):
+        print(f"Warning the path '{path}' doesn't exist.")
+        return
+    nbItems =[]
+    print(f"Files in given path: '{path}'")
+    print("-" * (len(path) + 20)) 
+
+    try:
+        
+        items = os.listdir(path)
+        
+        if not items:
+            print("Il percorso è vuoto.")
+        else:
+            for item in items:
+                
+                full_path = os.path.join(path, item)
+                if os.path.isfile(full_path):
+                    print(f"  File: {item}")
+                    nbItems.append(full_path)
+                elif os.path.isdir(full_path):
+                    print(f"  Cartella: {item}")
+                else:
+                    print(f"  Altro: {item}") # Per link simbolici, ecc.
+    
+    except Exception as e:
+        print(f"Si è verificato un errore durante l'accesso al percorso: {e}")
+   
+    return nbItems
+def clear_notebook(filepath):
+    ###Take a notebook (full path) as input and delete all cells "Code" and "output". "Markup" cells remain untouched.
+    with open(filepath, 'r+', encoding='utf-8') as f:
+        notebook = json.load(f)
+        print("Questo è il notebook:")
+        for cell in notebook['cells']:
+            if cell['cell_type'] == 'code':
+                print(f"Before deletion code cell content is:{cell['source']}")
+                cell['source'] = []  # Clear the code content
+                cell['outputs'] = [] # Clear the outputs
+                cell['execution_count'] = None # Reset execution count
+                print(f"After deletion code cell content is:{cell['source']}")
+        f.seek(0)
+        json.dump(notebook, f, indent=4, ensure_ascii=False)
+        f.truncate()
+
+path_to_check = r"/tf/Section 1/"
+
+items = list_files_in_path(path_to_check)
+for item in items:
+    clear_notebook(item)

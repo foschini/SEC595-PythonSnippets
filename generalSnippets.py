@@ -1,4 +1,6 @@
+#DATA TYPES PRINCIPALI
 
+#   TUPLE
 
 myTuple=(4,"ciccio",6.72) #le tuple sono liste di oggetti ordinate e immutabili.
 
@@ -20,12 +22,14 @@ for denominator in denominators:
         print(f"{numerator} fratto {denominator} uguale: ",numerator/denominator)
     except Exception as e:
         print(f"Non puoi dividere {numerator} per {denominator}: catturata eccezione:",e)
-
+# LISTE
 myList=[1, 2, 3]
 print(f"myList={myList}")
 
 myListTimesTwo=myList*2 #moltiplicare una lista per n significa fare .append per n volte della lista su se stessa
 print(f"myListTimesTwo={myListTimesTwo}")
+
+#NUMPY array
 
 import numpy as np
 #gli array di numpy sono liste di oggetti dello stesso tipo. se in fase di definizione inserisco oggetti di tipo diverso allora il costuttore riassegna il tipo

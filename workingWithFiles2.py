@@ -1,4 +1,4 @@
-#Partendo dal percorso mainDir, conto i fil-es e le directory. L'algoritmo sfrutta la ricorsione.
+#Partendo dal percorso mainDir, conto i files e le directory. L'algoritmo sfrutta la ricorsione.
 #funzioni della libreria os importanti sono:
 #os.listdir(path)->restituisce lista di directories e files
 #os.path.join(path1,path2)->restituisce path unione di due path inserendo i giusti separatori
